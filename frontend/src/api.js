@@ -1,5 +1,8 @@
 // API Client for IT LIVE Platform
-const API_BASE = '/api';
+// Supports relative URL (/api) for unified/Docker deployments,
+// or custom backend URL (VITE_API_BASE_URL) when frontend and backend are deployed separately.
+const RAW_API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE = RAW_API_BASE.replace(/\/+$/, '');
 
 export const getStoredToken = () => {
   return localStorage.getItem('itlive_token') || null;

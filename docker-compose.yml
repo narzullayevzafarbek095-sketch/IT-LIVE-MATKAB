@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  itlive-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: itlive_production
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DATABASE_URL=sqlite:///./itlive.db
+      - SECRET_KEY=it-live-super-secret-cyber-key-2026-production
+      - CORS_ORIGINS=*
+    volumes:
+      - itlive_data:/app/backend
+    restart: unless-stopped
+
+volumes:
+  itlive_data:
+

@@ -2,6 +2,7 @@ import base64
 import hashlib
 import hmac
 import json
+import os
 import time
 from typing import Optional
 from fastapi import HTTPException, Security, status, Depends
@@ -10,7 +11,7 @@ from sqlalchemy.orm import Session
 from database import get_db
 import models
 
-SECRET_KEY = "it-live-super-secret-cyber-key-2026-production"
+SECRET_KEY = os.getenv("SECRET_KEY", "it-live-super-secret-cyber-key-2026-production")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 60 * 60 * 24 * 7  # 7 days
 
